@@ -1,5 +1,9 @@
 # DevOps Base Project
 
+# Members
+- **Tran Tien Phuc** - GCH230013
+
+
 ## Project Overview
 
 This is a simple Todo application with:
