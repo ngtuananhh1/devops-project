@@ -66,15 +66,19 @@ app.delete('/api/todos/:id', async (req, res) => {
     }
 });
 
-// FIXED BUG #4: Implemented PUT endpoint
+// FIXED BUG #4: Implemented PUT endpoint (V2 - Chống lỗi undefined)
 app.put('/api/todos/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { title, completed } = req.body;
         
+        // Bắt buộc ép undefined thành null để thư viện pg không bị crash
+        const safeTitle = title !== undefined ? title : null;
+        const safeCompleted = completed !== undefined ? completed : null;
+        
         const result = await pool.query(
             'UPDATE todos SET title = COALESCE($1, title), completed = COALESCE($2, completed) WHERE id = $3 RETURNING *',
-            [title, completed, id]
+            [safeTitle, safeCompleted, id]
         );
 
         if (result.rows.length === 0) {
