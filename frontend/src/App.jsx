@@ -56,7 +56,8 @@ function App() {
       </div>
 
       <ul style={{ listStyle: 'none', padding: 0 }}>
-        {todos.map(todo => (
+        {/* Đã thêm kiểm tra mảng an toàn ở đây */}
+        {Array.isArray(todos) && todos.map(todo => (
           <li key={todo.id} style={{
             padding: '10px',
             border: '1px solid #ddd',
