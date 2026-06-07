@@ -19,7 +19,7 @@ const pool = new Pool({
 
 app.get('/health', (req, res) => {
     res.json({
-        status: 'healthy',
+        status: 'healthy checked',
         version: '1.0.0'
     });
 });
