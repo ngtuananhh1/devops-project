@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:14-alpine
@@ -31,7 +32,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
+
+      - name: Install PostgreSQL Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Initialize Database
+        run: |
+          PGPASSWORD=postgres psql \
+            -h localhost \
+            -U postgres \
+            -d postgres \
+            -f database/database.sql
 
       - name: Install dependencies & Run tests
         working-directory: ./backend
@@ -41,6 +55,7 @@ jobs:
           DB_PASSWORD: postgres
           DB_NAME: postgres
           DB_PORT: 5432
+          NODE_ENV: test
         run: |
           npm ci
           npm test
@@ -49,6 +64,7 @@ jobs:
     needs: build-and-test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
