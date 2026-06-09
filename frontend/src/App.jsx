@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 // STUDENT TODO: This API_URL works for local development
 // For Docker, you may need to configure nginx proxy or use container networking
+// const API_URL = 'https://backend-group-6.onrender.com';
+
 const API_URL = 'https://backend-group-6.onrender.com';
 function App() {
   const [todos, setTodos] = useState([]);
