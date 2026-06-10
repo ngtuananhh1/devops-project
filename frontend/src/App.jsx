@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // STUDENT TODO: This API_URL works for local development
 // For Docker, you may need to configure nginx proxy or use container networking
-// const API_URL = 'https://backend-group-6.onrender.com';
+
 
 const API_URL = 'https://backend-group-6.onrender.com';
 function App() {
@@ -73,13 +73,13 @@ function App() {
       </ul>
 
       <div style={{ marginTop: '30px', fontSize: '12px', color: '#666' }}>
-        <p><strong>STUDENT TODO:</strong></p>
-        <ul>
-          <li>Dockerfile (multi-stage)</li>
-          <li>Fix backend validation (broken test)</li>
-          <li>CI/CD pipeline</li>
-          <li>REPORT.md + Slides</li>
-        </ul>
+<h3>COMPLETED TASKS:</h3>
+<ul>
+  <li>Docker containerization</li>
+  <li>Backend bug fixes</li>
+  <li>Automated CI/CD pipeline</li>
+  <li>PostgreSQL integration</li>
+</ul>
       </div>
     </div>
   );
