@@ -73,13 +73,13 @@ function App() {
       </ul>
 
       <div style={{ marginTop: '30px', fontSize: '12px', color: '#666' }}>
-<h3>COMPLETED TASKS:</h3>
-<ul>
-  <li>Docker containerization</li>
-  <li>Backend bug fixes</li>
-  <li>Automated CI/CD pipeline</li>
-  <li>PostgreSQL integration</li>
-</ul>
+        <p><strong>STUDENT TODO:</strong></p>
+        <ul>
+          <li>Dockerfile (multi-stage)</li>
+          <li>Fix backend validation (broken test)</li>
+          <li>CI/CD pipeline</li>
+          <li>REPORT.md + Slides</li>
+        </ul>
       </div>
     </div>
   );
