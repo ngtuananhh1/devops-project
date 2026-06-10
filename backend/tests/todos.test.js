@@ -5,7 +5,7 @@ describe('Todos API', () => {
    // Test 1: Health check
    it('GET /health should return healthy status', async () => {
       const res = await request(app).get('/health');
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(500);
       expect(res.body.status).toBe('healthy');
    });
 
