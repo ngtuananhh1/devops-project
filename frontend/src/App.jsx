@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 
-// STUDENT TODO: This API_URL works for local development
-// For Docker, you may need to configure nginx proxy or use container networking
+// Pick API URL at runtime: use localhost when developing locally,
+// otherwise default to the deployed backend. You can also set
+// `REACT_APP_API_URL` at build time if needed.
+const API_URL = (() => {
+  try {
+    const envUrl = process.env.REACT_APP_API_URL;
+    if (envUrl) return envUrl;
+  } catch (e) {}
 
-
-const API_URL = 'https://backend-group-6.onrender.com';
+  const host = typeof window !== 'undefined' ? window.location.hostname : '';
+  if (host === 'localhost' || host === '127.0.0.1') return 'http://localhost:8080';
+  return 'https://backend-group-6.onrender.com';
+})();
 function App() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
@@ -39,6 +47,21 @@ function App() {
     }
   };
 
+  const deleteTodo = async (id) => {
+    if (!window.confirm('Delete this todo?')) return;
+    try {
+      const res = await fetch(`${API_URL}/api/todos/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (!res.ok) throw new Error('Delete failed');
+
+      setTodos(prev => prev.filter(t => t.id !== id));
+    } catch (err) {
+      alert('Failed to delete todo');
+    }
+  };
+
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
       <h1>🚀 DevOps Todo App</h1>
@@ -64,10 +87,18 @@ function App() {
             border: '1px solid #ddd',
             marginBottom: '5px',
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            <span>{todo.title}</span>
-            <small>{todo.completed ? '✅' : '⏳'}</small>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <span>{todo.title}</span>
+              <small style={{ color: '#666' }}>{todo.completed ? '✅' : '⏳'}</small>
+            </div>
+            <div>
+              <button onClick={() => deleteTodo(todo.id)} style={{ padding: '6px 10px', marginLeft: '10px' }}>
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
