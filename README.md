@@ -1,6 +1,11 @@
 # DevOps Base Project
 
-## Project Overview
+# Members
+Nguyễn Anh Tuấn - Group Leader
+Trần Tiến Phúc - Member
+Nguyễn Sỹ Nghĩa - Member
+
+## Project Overview - Group 6
 
 This is a simple Todo application with:
 - **Frontend**: React (port 3000)
