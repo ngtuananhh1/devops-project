@@ -9,6 +9,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+const pool = new Pool({
     user: process.env.DB_USER || 'postgres',
     host: process.env.DB_HOST || 'localhost',
     database: process.env.DB_NAME || 'postgres',
