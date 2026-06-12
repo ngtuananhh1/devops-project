@@ -105,12 +105,7 @@ function App() {
 
       <div style={{ marginTop: '30px', fontSize: '12px', color: '#666' }}>
         <p><strong>STUDENT TODO:</strong></p>
-        <ul>
-          <li>Dockerfile (multi-stage)</li>
-          <li>Fix backend validation (broken test)</li>
-          <li>CI/CD pipeline</li>
-          <li>REPORT.md + Slides</li>
-        </ul>
+
       </div>
     </div>
   );
